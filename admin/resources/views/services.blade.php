@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 05:58:50
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-22 21:56:35
+ * @Last Modified time: 2021-11-27 13:03:37
  */
 ?>
 @extends('layouts.app')
@@ -52,22 +52,50 @@
     </div>
 </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<!--Delete Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-body text-center p-3">
-          <h5 class="mt-4">Do you want to delete</h5>
-          <h5 id="serviceDeleteId" class="mt-4">...</h5>
+        <div class="modal-content">
+            <div class="modal-body text-center p-3">
+                <h5 class="mt-4">Do you want to delete</h5>
+                <h5 id="serviceDeleteId" class="mt-4">...</h5>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">No</button>
+                <button id="serviceDeleteConfirmBtn" type="button" class="btn btn-sm btn-danger">Yes</button>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">No</button>
-          <button id="serviceDeleteConfirmBtn" type="button" class="btn btn-sm btn-danger">Yes</button>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<!--Edit Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center p-5">
+
+                <h5 id="serviceEditId" class="mt-4">...</h5>
+                <div id="serviceEditForm" class="w-100 d-none">
+                    <input type="text" id="serviceNameId" id="" class="form-control mb-4" placeholder="Service Name" />
+                    <input type="text" id="serviceDesId" id="" class="form-control mb-4" placeholder="Service Describtion" />
+                    <input type="text" id="serviceImageId" id="" class="form-control mb-4" placeholder="Service Image Link" />
+                </div>
+
+
+
+                <img id="serviceEditLoder" class="loading-icon m-5" src="{{ asset('images/loader.svg') }}">
+                <h5 id="serviceEditWrong" class="d-none">Something went wrong !</h5>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</button>
+                <button id="serviceEditConfirmBtn" type="button" class="btn btn-sm btn-danger">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')

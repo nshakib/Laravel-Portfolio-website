@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 21:59:08
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-22 21:52:39
+ * @Last Modified time: 2021-11-27 13:16:25
  */
 
 use Illuminate\Support\Facades\Route;
@@ -24,6 +24,11 @@ use App\Http\Controllers\VisitorController;
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/visitor',[VisitorController::class,'index'])->name('visitor');
+
+
+// Admin Panel Service mangement
 Route::get('/service',[ServiceController::class,'index'])->name('service');
 Route::get('/getServiceData',[ServiceController::class,'show'])->name('getService');
 Route::post('/serviceDelete',[ServiceController::class,'destroy']);
+Route::post('/serviceDetails',[ServiceController::class,'edit']);
+Route::post('/serviceUpdate',[ServiceController::class,'update']);

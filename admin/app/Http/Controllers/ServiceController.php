@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 06:01:17
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-22 22:46:56
+ * @Last Modified time: 2021-11-27 13:19:33
  */
 
 namespace App\Http\Controllers;
@@ -64,9 +64,11 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $result = Service::where('id', '=', $id)->get();
+        return $result;
     }
 
     /**
@@ -76,9 +78,22 @@ class ServiceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        // $service = new Service();
+        // $service->name = $request->name;
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $des = $request->input('des');
+        $img = $request->input('img');
+        $result = Service::where('id', '=', $id)->update(['service_name'=>$name, 'service_des'=>$des,'service_img'=>$img]);
+
+        if($result==true){
+            return 1;
+        }else{
+            return 0;
+        }
+        // $service->save();
     }
 
     /**
