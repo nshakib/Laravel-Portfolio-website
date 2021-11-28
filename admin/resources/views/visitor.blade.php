@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-17 22:27:43
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-17 23:06:44
+ * @Last Modified time: 2021-11-28 23:00:31
  */
 ?>
 @extends('layouts.app')
@@ -36,4 +36,15 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    //visitor page table
+$(document).ready(function() {
+    $("#VisitorDt").DataTable();
+    $(".dataTables_length").addClass("bs-select");
+});
+
+</script>
 @endsection

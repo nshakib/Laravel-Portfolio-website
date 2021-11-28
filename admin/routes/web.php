@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 21:59:08
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-27 13:16:25
+ * @Last Modified time: 2021-11-28 22:06:08
  */
 
 use Illuminate\Support\Facades\Route;
@@ -32,3 +32,4 @@ Route::get('/getServiceData',[ServiceController::class,'show'])->name('getServic
 Route::post('/serviceDelete',[ServiceController::class,'destroy']);
 Route::post('/serviceDetails',[ServiceController::class,'edit']);
 Route::post('/serviceUpdate',[ServiceController::class,'update']);
+Route::post('/serviceAdd',[ServiceController::class,'store']);

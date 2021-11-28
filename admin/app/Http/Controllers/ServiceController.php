@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 06:01:17
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-27 13:19:33
+ * @Last Modified time: 2021-11-28 22:14:55
  */
 
 namespace App\Http\Controllers;
@@ -32,7 +32,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -43,7 +43,16 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $name = $request->input('name');
+        $des = $request->input('des');
+        $img = $request->input('img');
+        $result = Service::insert(['service_name'=>$name, 'service_des'=>$des,'service_img'=>$img]);
+
+        if($result==true){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
     /**
