@@ -2,7 +2,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 21:59:49
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-27 15:20:08
+ * @Last Modified time: 2021-11-28 21:45:40
  */
 //visitor page table
 $(document).ready(function() {
@@ -67,23 +67,31 @@ $('#serviceDeleteConfirmBtn').click(function() {
     })
     //service delete
 function ServiceDelete(deleteId) {
-    axios.post('/serviceDelete', {
+    $('#serviceDeleteConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>"); //animation
+    axios.post('serviceDelete', {
             id: deleteId
         })
         .then(function(response) {
-            if (response.data == 1) {
-                $('#deleteModal').modal('hide');
-                toastr.success('Delete Success.');
-                getServiceData();
+            $('#serviceDeleteConfirmBtn').html("Yes")
+            if (response.status == 200) {
+                if (response.data == 1) {
+                    $('#deleteModal').modal('hide');
+                    toastr.success('Delete Success.');
+                    getServiceData();
 
+                } else {
+                    $('#deleteModal').modal('hide');
+                    toastr.error('Delete Fail.');
+                    getServiceData();
+                }
             } else {
                 $('#deleteModal').modal('hide');
-                toastr.error('Delete Fail.');
-                getServiceData();
+                toastr.error("Something went wrong !");
             }
         })
         .catch(function(error) {
-
+            $('#deleteModal').modal('hide');
+            toastr.error("Something went wrong !");
         });
 }
 
@@ -138,6 +146,7 @@ function ServiceUpdate(serviceId, serviceName, serviceDes, serviceImg) {
         toastr.error("Service image is Empty");
 
     } else {
+        $('#serviceEditConfirmBtn').html("<div class='spinner-border spinner-border-sm' role='status'></div>"); //animation
         axios.post('/serviceUpdate', {
                 id: serviceId,
                 name: serviceName,
@@ -145,19 +154,26 @@ function ServiceUpdate(serviceId, serviceName, serviceDes, serviceImg) {
                 img: serviceImg,
             })
             .then(function(response) {
-                if (response.data == 1) {
-                    $('#editModal').modal('hide');
-                    toastr.success('Update Success.');
-                    getServiceData();
+                $('#serviceEditConfirmBtn').html("Save")
+                if (response.status == 200) {
+                    if (response.data == 1) {
+                        $('#editModal').modal('hide');
+                        toastr.success('Update Success.');
+                        getServiceData();
 
+                    } else {
+                        $('#editModal').modal('hide');
+                        toastr.error('Update Fail.');
+                        getServiceData();
+                    }
                 } else {
-                    $('#editModal').modal('hide');
-                    toastr.error('Update Fail.');
-                    getServiceData();
+                    toastr.error('Something went wrong !');
                 }
+
             })
             .catch(function(error) {
-
+                $('#editModal').modal('hide');
+                toastr.error('Something went wrong !');
             });
 
     }
