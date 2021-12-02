@@ -3,12 +3,13 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:57:01
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-17 23:41:37
+ * @Last Modified time: 2021-11-29 23:16:35
  */
 
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Service;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
@@ -32,7 +33,10 @@ class HomeController extends Controller
         //service
         $servicesData = json_decode(Service::all());
 
-        return view('home',compact('servicesData'));
+        //course
+        $coursesData = json_decode(Course::orderBy('id','desc')->limit(6)->get());
+
+        return view('home',compact('servicesData', 'coursesData'));
     }
 
     /**

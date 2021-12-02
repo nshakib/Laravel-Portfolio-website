@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 05:58:50
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-28 22:35:11
+ * @Last Modified time: 2021-12-02 22:28:12
  */
 ?>
 @extends('layouts.app')
@@ -38,7 +38,7 @@
         </div>
     </div>
 </div>
-
+{{-- loader --}}
 <div class="container" id="loaderDiv">
     <div class="row">
         <div class="col-md-12 p-5 text-center">
@@ -47,6 +47,7 @@
     </div>
 </div>
 
+{{-- something went div --}}
 <div class="container d-none" id="wrongDiv">
     <div class="row">
         <div class="col-md-12 p-5 text-center">
