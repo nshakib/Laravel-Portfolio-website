@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:33:06
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-12-07 21:00:41
+ * @Last Modified time: 2022-01-17 23:21:48
  */
 ?>
 @extends('layouts.app')
@@ -17,5 +17,7 @@
 @include('component.home-course')
 
 @include('component.home-project')
+
+@include('component.home-contact')
 
 @endsection

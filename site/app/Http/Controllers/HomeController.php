@@ -3,12 +3,13 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:57:01
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-12-07 21:16:02
+ * @Last Modified time: 2022-01-17 23:55:48
  */
 
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Course;
 use App\Models\Project;
 use App\Models\Service;
@@ -107,5 +108,27 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function ContactSend(Request $request)
+    {
+        $contact_name = $request->input('contact_name');
+        $contact_mobile = $request->input('contact_mobile');
+        $contact_email = $request->input('contact_email');
+        $contact_msg = $request->input('contact_msg');
+
+        $result = Contact::insert([
+            'contact_name' => $contact_name,
+            'contact_mobile' => $contact_mobile,
+            'contact_email' => $contact_email,
+            'contact_msg' => $contact_msg
+        ]);
+
+        if($result==true)
+        {
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
