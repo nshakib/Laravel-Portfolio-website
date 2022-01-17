@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:02:35
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-18 07:37:08
+ * @Last Modified time: 2021-12-03 08:44:03
  */
 ?>
 <!DOCTYPE html>
@@ -12,6 +12,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="token" id="token" value="{{ csrf_token() }}">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">

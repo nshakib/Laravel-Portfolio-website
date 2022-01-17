@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 05:58:50
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-12-02 22:28:12
+ * @Last Modified time: 2021-12-05 23:36:45
  */
 ?>
 @extends('layouts.app')
@@ -14,7 +14,7 @@
 
             <button id="addNewBtnId" class="btn my-3 btn-danger">Add New</button>
 
-            <table id="" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <table id="serviceDataTable" class="table table-striped table-bordered" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="th-sm">Image</th>
@@ -63,7 +63,7 @@
         <div class="modal-content">
             <div class="modal-body text-center p-3">
                 <h5 class="mt-4">Do you want to delete</h5>
-                <h5 id="serviceDeleteId" class="mt-4">...</h5>
+                <h5 id="serviceDeleteId" class="mt-4 d-none">...</h5>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-primary" data-dismiss="modal">No</button>
@@ -78,9 +78,14 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-body text-center p-5">
-
-                <h5 id="serviceEditId" class="mt-4">...</h5>
+            <div class="modal-header">
+                <h5 class="modal-title">Update Service</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center p-4">
+                <h5 id="serviceEditId" class="mt-4 d-none">...</h5>
                 <div id="serviceEditForm" class="w-100 d-none">
                     <input type="text" id="serviceNameId" id="" class="form-control mb-4" placeholder="Service Name" />
                     <input type="text" id="serviceDesId" id="" class="form-control mb-4" placeholder="Service Describtion" />
@@ -136,7 +141,10 @@ function getServiceData() {
             if (response.status == 200) {
                 $('#mainDiv').removeClass('d-none');
                 $('#loaderDiv').addClass('d-none');
+
+                $('#serviceDataTable').DataTable().destroy();
                 $('#service_table').empty(); //refresh for empty table, reduce for duplicate show
+
                 var dataJSON = response.data;
                 $.each(dataJSON, function(i, item) {
                     $('<tr>').html(
@@ -164,6 +172,9 @@ function getServiceData() {
                     ServiceUpdateDetails(id);
                     $('#editModal').modal('show');
                 })
+
+                $('#serviceDataTable').DataTable({"order":false}); // for pagination
+                $(".dataTables_length").addClass("bs-select");// show data according to size
 
 
             } else {
@@ -248,8 +259,9 @@ $('#serviceEditConfirmBtn').click(function() {
 
         ServiceUpdate(id, name, des, img);
     })
-    //Service update
 
+
+//Service update
 function ServiceUpdate(serviceId, serviceName, serviceDes, serviceImg) {
 
     if (serviceName.length == 0) {
@@ -302,6 +314,7 @@ function ServiceUpdate(serviceId, serviceName, serviceDes, serviceImg) {
 $("#addNewBtnId").click(function() {
     $("#addModal").modal('show');
 
+
 });
 
 //service update save button
@@ -311,6 +324,7 @@ $('#addServiceConfirmBtn').click(function() {
     var img = $('#serviceImageAddId').val();
 
     ServiceAdd(name, des, img);
+    getServiceData();
 })
 
 //service add method
@@ -360,6 +374,7 @@ function ServiceAdd(serviceName, serviceDes, serviceImg) {
 
     }
 }
+
 
 </script>
 @endsection

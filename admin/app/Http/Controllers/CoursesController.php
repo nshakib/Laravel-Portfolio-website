@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-12-01 22:58:12
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-12-02 00:46:46
+ * @Last Modified time: 2021-12-10 12:26:06
  */
 
 namespace App\Http\Controllers;
@@ -24,8 +24,8 @@ class CoursesController extends Controller
     }
 
     //get course data
-    public function getCourseData(Request $request){
-        $result = json_decode(Course::all());
+    public function getCourseData(){
+        $result = json_encode(Course::orderBy('id','desc')->get());
         return $result;
     }
 
@@ -36,10 +36,12 @@ class CoursesController extends Controller
         return $result;
     }
 
+    //course delete
     public function CourseDelete(Request $request){
         $id = $request->input('id');
         $result = Course::where('id','=',$id)->delete();
-        if($result==true){
+
+        if($result == true){
             return 1;
         }else{
             return 0;
@@ -56,7 +58,8 @@ class CoursesController extends Controller
         $course_totalclass = $request->input('course_totalclass');
         $course_link = $request->input('course_link');
         $course_img = $request->input('course_img');
-        $result = Course::where('id','=','$id')->update([
+        
+        $result = Course::where('id','=',$id)->update([
             'course_name'=>$course_name,
             'course_des'=>$course_des,
             'course_fee'=>$course_fee,
@@ -67,7 +70,7 @@ class CoursesController extends Controller
 
         ]);
 
-        if($result ==true){
+        if($result == true){
             return 1;
         }else{
             return 0;
@@ -84,7 +87,8 @@ class CoursesController extends Controller
         $course_totalclass = $request->input('course_totalclass');
         $course_link = $request->input('course_link');
         $course_img = $request->input('course_img');
-        $result = Course::insert('id','=','$id')->update([
+
+        $result = Course::insert([
             'course_name'=>$course_name,
             'course_des'=>$course_des,
             'course_fee'=>$course_fee,

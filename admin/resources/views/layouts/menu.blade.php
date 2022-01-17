@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:26:55
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-12-01 23:09:44
+ * @Last Modified time: 2022-01-12 07:50:11
  */
 ?>
 <div id="main-wrapper">
@@ -30,6 +30,8 @@
                     <li> <a href="{{ route('visitor') }}" ><span> <i class="fas fa-users"></i> </span><span class="hide-menu">Visitor</span></a></li>
                     <li> <a href="{{ route('service') }}" ><span> <i class="fas fa-globe"></i> </span><span class="hide-menu">Services</span></a></li>
                     <li> <a href="{{ route('courses') }}" ><span> <i class="fas fa-book-open"></i> </span><span class="hide-menu">Courses</span></a></li>
+                    <li> <a href="{{ route('projects') }}" ><span> <i class="fas fa-code"></i> </span><span class="hide-menu">Projects</span></a></li>
+                    <li> <a href="{{ route('test') }}" ><span> <i class="fas fa-code"></i> </span><span class="hide-menu">Test</span></a></li>
                 </ul>
             </nav>
         </div>

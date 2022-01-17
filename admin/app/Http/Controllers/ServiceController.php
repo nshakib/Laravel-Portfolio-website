@@ -3,15 +3,13 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-18 06:01:17
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-28 22:14:55
+ * @Last Modified time: 2022-01-07 13:01:26
  */
 
 namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\returnSelf;
 
 class ServiceController extends Controller
 {
@@ -63,7 +61,7 @@ class ServiceController extends Controller
      */
     public function show()
     {
-        $result = json_encode(Service::all());
+        $result = json_encode(Service::orderBy('id','desc')->get());
         return $result;
     }
 

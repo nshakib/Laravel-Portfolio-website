@@ -3,13 +3,14 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-16 22:57:01
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-29 23:16:35
+ * @Last Modified time: 2021-12-07 21:16:02
  */
 
 
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\Project;
 use App\Models\Service;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
@@ -36,7 +37,10 @@ class HomeController extends Controller
         //course
         $coursesData = json_decode(Course::orderBy('id','desc')->limit(6)->get());
 
-        return view('home',compact('servicesData', 'coursesData'));
+        //project
+        $projectData = json_decode(Project::orderBy('id', 'desc')->limit(5)->get());
+
+        return view('home',compact('servicesData', 'coursesData','projectData'));
     }
 
     /**

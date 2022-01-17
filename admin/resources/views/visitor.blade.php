@@ -3,7 +3,7 @@
  * @Author: Md Nazmus Shakib
  * @Date:   2021-11-17 22:27:43
  * @Last Modified by:   Md Nazmus Shakib
- * @Last Modified time: 2021-11-28 23:00:31
+ * @Last Modified time: 2021-12-05 23:10:32
  */
 ?>
 @extends('layouts.app')
@@ -42,7 +42,7 @@
 <script type="text/javascript">
     //visitor page table
 $(document).ready(function() {
-    $("#VisitorDt").DataTable();
+    $("#VisitorDt").DataTable({"order":false});
     $(".dataTables_length").addClass("bs-select");
 });
 
